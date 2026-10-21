@@ -1,0 +1,17 @@
+{
+  "background_color": "#0b0c0e",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "FocusLab",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "focuslab",
+  "start_url": "https://ismailkrk123.github.io/focuslab/",
+  "theme_color": "#0b0c0e",
+  "id": "/focuslab/",
+  "description": "Bu uygulama YKS öğrencilerinin sınav süreçlerinde daha düzenli çalışmalarını sağlamak amacıyla oluşturulmuş yapay zeka destekli ayrıca sanal kütüphane ve pomodoro özelliklerinin de bulunduğu bir to do list &amp; task uygulamasıdır.",
+  "lang": "tr",
+  "categories": [
+    "education"
+  ]
+}
