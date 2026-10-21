@@ -1,0 +1,661 @@
+/* ==========================================================================
+   Focuslab - Minimalist Liquid Glass & Deep Oval Geometry Stylesheet
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --primary: #38bdf8;
+  --primary-glow: rgba(56, 189, 248, 0.25);
+  --bg-main: #08090c;
+  --card-border: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(12, 14, 18, 0.9);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --panel-radius: 32px; /* Kesinlikle kare değil, derin oval köşe */
+  --card-radius: 24px;  /* Oval kutucuklar */
+}
+
+/* Light Mode: Ceramic soft off-white, high-contrast slate text, zero blinding glare */
+body.theme-light {
+  --primary: #0284c7;
+  --primary-glow: rgba(2, 132, 199, 0.15);
+  --bg-main: #f4f6fa;
+  --card-border: rgba(0, 0, 0, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.9);
+  --text-main: #0f172a;
+  --text-muted: #475569;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  transition: background-color 0.3s ease, color 0.25s ease;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+/* Light Mode Global Text Contrast Fixes (Hiçbir yazı kaybolmaz) */
+body.theme-light,
+body.theme-light h1,
+body.theme-light h2,
+body.theme-light h3,
+body.theme-light h4,
+body.theme-light .text-white,
+body.theme-light [class*="text-slate-100"],
+body.theme-light [class*="text-slate-200"] {
+  color: #0f172a !important;
+}
+
+body.theme-light .text-slate-300,
+body.theme-light .text-slate-400 {
+  color: #475569 !important;
+}
+
+body.theme-light .text-slate-500 {
+  color: #64748b !important;
+}
+
+body.theme-light .bg-white\/5,
+body.theme-light .bg-white\/10,
+body.theme-light .bg-white\/\[0\.02\],
+body.theme-light .bg-white\/\[0\.03\] {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+
+body.theme-light .border-white\/5,
+body.theme-light .border-white\/10,
+body.theme-light .border-white\/15,
+body.theme-light .border-white\/20 {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+body.theme-light .bg-black\/40,
+body.theme-light .bg-black\/50,
+body.theme-light .bg-black\/60 {
+  background-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+/* ==========================================================================
+   TOP HEADER & FLOATING OVAL NAV PILL (Siyah Şerit / Filigran Kesinlikle Yok)
+   ========================================================================== */
+.app-header {
+  background: transparent !important;
+  border-bottom: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+body.theme-light .app-header {
+  background: transparent !important;
+  border-bottom: none !important;
+  backdrop-filter: none !important;
+}
+
+/* Floating Oval Navigation Palette (Kendi başına yüzen oval palet) */
+.nav-pill-container {
+  background: rgba(12, 14, 20, 0.8);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  padding: 4px;
+  display: flex;
+  align-items: center;
+}
+
+body.theme-light .nav-pill-container {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.08);
+}
+
+.nav-tab-pill {
+  padding: 0.45rem 1.05rem;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+}
+.nav-tab-pill:hover {
+  color: var(--text-main);
+}
+.nav-tab-pill.active-tab {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--text-main);
+  font-weight: 600;
+}
+body.theme-light .nav-tab-pill.active-tab {
+  background: rgba(0, 0, 0, 0.08);
+  color: #0f172a;
+}
+
+/* Focuslab Minimal Halo Icon */
+.focuslab-halo-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.focuslab-halo-ring {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+}
+
+/* ==========================================================================
+   TOP LIQUID OVAL NOTCH
+   ========================================================================== */
+.liquid-island {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 60;
+  background: var(--glass-bg);
+  backdrop-filter: blur(36px) saturate(200%);
+  -webkit-backdrop-filter: blur(36px) saturate(200%);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.45);
+  border-radius: 9999px; /* Tam Oval */
+  padding: 6px 18px;
+  transition: all 0.25s ease;
+  max-width: 95vw;
+}
+
+/* ==========================================================================
+   DEEP OVAL GLASS PANELS (Kare değil, oval çerçeve)
+   ========================================================================== */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  border: 1px solid var(--card-border);
+  border-radius: var(--panel-radius); /* Derin Oval Köşe */
+  box-shadow: 0 14px 34px -10px rgba(0, 0, 0, 0.45);
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.3s;
+}
+
+body.theme-light .glass-panel {
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+}
+
+.glass-panel:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+}
+body.theme-light .glass-panel:hover {
+  border-color: rgba(0, 0, 0, 0.14);
+}
+
+/* ==========================================================================
+   TASK CARDS (Ayrık, Ferah ve Ambiyans Renklendirmeli)
+   ========================================================================== */
+.tasks-fluid-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1.5rem; /* Yapışık değil, ferah ve ayrık */
+  padding-bottom: 3.5rem;
+}
+
+.task-fluid-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: var(--card-radius); /* Oval Kutucuk */
+  padding: 1.25rem;
+  min-width: 220px;
+  min-height: 120px;
+  background: var(--glass-bg);
+  border: 1px solid var(--card-border);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.task-fluid-card:hover {
+  transform: translateY(-2px);
+}
+
+.task-fluid-card.is-resizing {
+  transition: none !important;
+  user-select: none !important;
+  z-index: 30;
+  box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Fluid corner resize handle */
+.fluid-resize-handle-se {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 22px;
+  height: 22px;
+  cursor: nwse-resize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.35;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 20;
+}
+
+.task-fluid-card:hover .fluid-resize-handle-se {
+  opacity: 0.9;
+}
+
+.fluid-resize-handle-se:hover {
+  transform: scale(1.2);
+  opacity: 1;
+  color: var(--primary);
+}
+
+/* Card Ambient Tints (Sol şerit yok, tüm kutucuğun ambiyansı renklenir) */
+.card-color-blue {
+  background: radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.14) 0%, var(--glass-bg) 75%) !important;
+  border: 1px solid rgba(56, 189, 248, 0.28) !important;
+  box-shadow: 0 12px 32px -10px rgba(56, 189, 248, 0.22) !important;
+}
+.card-color-purple {
+  background: radial-gradient(circle at 15% 15%, rgba(168, 85, 247, 0.14) 0%, var(--glass-bg) 75%) !important;
+  border: 1px solid rgba(168, 85, 247, 0.28) !important;
+  box-shadow: 0 12px 32px -10px rgba(168, 85, 247, 0.22) !important;
+}
+.card-color-emerald {
+  background: radial-gradient(circle at 15% 15%, rgba(16, 185, 129, 0.14) 0%, var(--glass-bg) 75%) !important;
+  border: 1px solid rgba(16, 185, 129, 0.28) !important;
+  box-shadow: 0 12px 32px -10px rgba(16, 185, 129, 0.22) !important;
+}
+.card-color-amber {
+  background: radial-gradient(circle at 15% 15%, rgba(245, 158, 11, 0.14) 0%, var(--glass-bg) 75%) !important;
+  border: 1px solid rgba(245, 158, 11, 0.28) !important;
+  box-shadow: 0 12px 32px -10px rgba(245, 158, 11, 0.22) !important;
+}
+.card-color-rose {
+  background: radial-gradient(circle at 15% 15%, rgba(244, 63, 94, 0.14) 0%, var(--glass-bg) 75%) !important;
+  border: 1px solid rgba(244, 63, 94, 0.28) !important;
+  box-shadow: 0 12px 32px -10px rgba(244, 63, 94, 0.22) !important;
+}
+.card-color-sky {
+  background: radial-gradient(circle at 15% 15%, rgba(6, 182, 212, 0.14) 0%, var(--glass-bg) 75%) !important;
+  border: 1px solid rgba(6, 182, 212, 0.28) !important;
+  box-shadow: 0 12px 32px -10px rgba(6, 182, 212, 0.22) !important;
+}
+
+/* Light Mode Card Ambient Tints */
+body.theme-light .card-color-blue {
+  background: radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.16) 0%, #ffffff 80%) !important;
+  border: 1px solid rgba(56, 189, 248, 0.35) !important;
+  box-shadow: 0 8px 24px -8px rgba(56, 189, 248, 0.22) !important;
+}
+body.theme-light .card-color-purple {
+  background: radial-gradient(circle at 15% 15%, rgba(168, 85, 247, 0.16) 0%, #ffffff 80%) !important;
+  border: 1px solid rgba(168, 85, 247, 0.35) !important;
+  box-shadow: 0 8px 24px -8px rgba(168, 85, 247, 0.22) !important;
+}
+body.theme-light .card-color-emerald {
+  background: radial-gradient(circle at 15% 15%, rgba(16, 185, 129, 0.16) 0%, #ffffff 80%) !important;
+  border: 1px solid rgba(16, 185, 129, 0.35) !important;
+  box-shadow: 0 8px 24px -8px rgba(16, 185, 129, 0.22) !important;
+}
+body.theme-light .card-color-amber {
+  background: radial-gradient(circle at 15% 15%, rgba(245, 158, 11, 0.16) 0%, #ffffff 80%) !important;
+  border: 1px solid rgba(245, 158, 11, 0.35) !important;
+  box-shadow: 0 8px 24px -8px rgba(245, 158, 11, 0.22) !important;
+}
+body.theme-light .card-color-rose {
+  background: radial-gradient(circle at 15% 15%, rgba(244, 63, 94, 0.16) 0%, #ffffff 80%) !important;
+  border: 1px solid rgba(244, 63, 94, 0.35) !important;
+  box-shadow: 0 8px 24px -8px rgba(244, 63, 94, 0.22) !important;
+}
+body.theme-light .card-color-sky {
+  background: radial-gradient(circle at 15% 15%, rgba(6, 182, 212, 0.16) 0%, #ffffff 80%) !important;
+  border: 1px solid rgba(6, 182, 212, 0.35) !important;
+  box-shadow: 0 8px 24px -8px rgba(6, 182, 212, 0.22) !important;
+}
+
+/* ==========================================================================
+   CALENDAR (Yerinde Yakınlaşan Gün Kutucuğu - Aynı Panelde Kalır)
+   ========================================================================== */
+.calendar-day-cell {
+  border-radius: 20px;
+  min-height: 82px;
+  padding: 0.65rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  position: relative;
+  border: 1px solid var(--card-border);
+  background: rgba(255, 255, 255, 0.02);
+}
+.calendar-day-cell:hover {
+  border-color: rgba(56, 189, 248, 0.5);
+  transform: translateY(-2px);
+}
+
+body.theme-light .calendar-day-cell {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+/* Zoomed / Yakınlaşmış Gün Kutusu (Diğer günlerden daha büyük yaklaşır) */
+.calendar-zoomed-day {
+  grid-column: span 3;
+  grid-row: span 2;
+  min-height: 340px;
+  max-height: 440px;
+  background: var(--glass-bg);
+  border: 2px solid var(--primary) !important;
+  border-radius: 28px;
+  box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.7);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (max-width: 900px) {
+  .calendar-zoomed-day {
+    grid-column: span 7;
+  }
+}
+
+body.theme-light .calendar-zoomed-day {
+  background: #ffffff;
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.12);
+}
+
+/* Mini task card replica (Görsel olarak ana sayfadaki kartla aynı, inert önizleme) */
+.calendar-mini-task-card {
+  border-radius: 18px;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--card-border);
+  pointer-events: none; /* İnert görsel önizleme */
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background: var(--glass-bg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================================================
+   FULLSCREEN IMMERSIVE SANAL KÜTÜPHANE & MOTION BLUR OVAL SAAT
+   ========================================================================== */
+.fullscreen-library {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+  transition: background-image 0.5s ease;
+}
+
+.fullscreen-library-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(8, 9, 12, 0.45) 0%, rgba(8, 9, 12, 0.88) 100%);
+  z-index: 1;
+}
+
+.library-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Oval Motion Blur Clock Panel (Saat derin oval panelin içinde) */
+.library-clock-oval-panel {
+  background: rgba(8, 10, 16, 0.68);
+  backdrop-filter: blur(48px) saturate(200%);
+  -webkit-backdrop-filter: blur(48px) saturate(200%);
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  border-radius: 48px; /* Derin Oval Çerçeve */
+  padding: 2.25rem 3.75rem;
+  box-shadow: 0 30px 80px -15px rgba(0, 0, 0, 0.85),
+              0 0 50px rgba(56, 189, 248, 0.18),
+              inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.library-clock-oval-panel:hover {
+  transform: scale(1.02);
+  box-shadow: 0 35px 90px -15px rgba(0, 0, 0, 0.9), 0 0 65px rgba(56, 189, 248, 0.25);
+}
+
+.library-clean-clock {
+  font-size: clamp(3.6rem, 8.5vw, 6.2rem);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  font-family: 'JetBrains Mono', monospace;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+  user-select: none;
+}
+
+/* Minimalist Analog Clock */
+.analog-clock-dial {
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  background: rgba(10, 12, 16, 0.65);
+  backdrop-filter: blur(20px);
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.clock-hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform-origin: bottom center;
+  border-radius: 4px;
+}
+.clock-hand-hour { width: 3.5px; height: 48px; background: #ffffff; margin-left: -1.75px; }
+.clock-hand-min { width: 2px; height: 72px; background: #38bdf8; margin-left: -1px; }
+.clock-hand-sec { width: 1.5px; height: 78px; background: #f43f5e; margin-left: -0.75px; }
+.clock-center-pin { position: absolute; top: 50%; left: 50%; width: 8px; height: 8px; border-radius: 50%; background: #38bdf8; transform: translate(-50%, -50%); }
+
+/* Dedicated Library Floating Music Panel (Kütüphanenin kendi iç paneli) */
+.library-internal-drawer {
+  position: absolute;
+  top: 5rem;
+  left: 2rem;
+  width: 320px;
+  max-width: calc(100vw - 4rem);
+  z-index: 105;
+  border-radius: var(--panel-radius);
+  transform: translateY(-10px);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.library-internal-drawer.active {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Product Cards in Shop: Pure White background for vivid shape visibility */
+.shop-product-card {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border-radius: 20px;
+  padding: 1rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.shop-product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Tree Canvas Simulation */
+#tree-canvas-3d {
+  width: 100%;
+  height: 260px;
+  border-radius: 20px;
+}
+
+/* ==========================================================================
+   PURCHASE CELEBRATION SHOWCASE MODAL (Satın Aldıktan Sonra Şekil / Vitrin)
+   ========================================================================= */
+.purchase-showcase-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 130;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(32px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.purchase-showcase-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.purchase-showcase-card {
+  background: #ffffff;
+  color: #0f172a;
+  border-radius: 36px;
+  padding: 2.25rem;
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  box-shadow: 0 25px 65px -15px rgba(0, 0, 0, 0.7);
+  transform: scale(0.92) translateY(15px);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.purchase-showcase-overlay.active .purchase-showcase-card {
+  transform: scale(1) translateY(0);
+}
+
+/* Universal Floating Mini Music Player (Bottom-Right) */
+.universal-mini-player {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 55;
+  background: var(--glass-bg);
+  backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid var(--card-border);
+  border-radius: 9999px; /* Tam Oval */
+  padding: 6px 14px;
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Floating AI Button (Bottom-Left) */
+.floating-ai-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  z-index: 55;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%; /* Oval / Yuvarlak */
+  background: var(--glass-bg);
+  backdrop-filter: blur(28px);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.floating-ai-btn:hover {
+  transform: scale(1.08);
+}
+
+/* AI Drawer */
+.ai-drawer {
+  position: fixed;
+  bottom: 5.25rem;
+  left: 1.5rem;
+  width: 350px;
+  max-width: 90vw;
+  height: 460px;
+  z-index: 55;
+  border-radius: var(--panel-radius);
+  transform: translateY(20px) scale(0.95);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ai-drawer.active {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Form Inputs with Oval Curvature */
+.glass-input {
+  background: rgba(15, 18, 26, 0.65);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  color: var(--text-main);
+  padding: 0.5rem 0.85rem;
+  font-size: 12px;
+  transition: all 0.2s ease;
+}
+body.theme-light .glass-input {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  color: #0f172a;
+}
+.glass-input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* Modal Backdrops */
+.modal-backdrop {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.modal-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal-content {
+  border-radius: var(--panel-radius);
+  transform: scale(0.96) translateY(10px);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.modal-backdrop.active .modal-content {
+  transform: scale(1) translateY(0);
+}
