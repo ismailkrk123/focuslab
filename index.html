@@ -781,5 +781,14 @@
   <script src="js/audio.js"></script>
   <script src="js/store.js"></script>
   <script src="js/app.js"></script>
+  <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js')
+        .then((reg) => console.log('Service Worker aktif!'))
+        .catch((err) => console.log('Hata:', err));
+    });
+  }
+</script>
 </body>
 </html>
