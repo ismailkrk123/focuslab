@@ -11,19 +11,19 @@
       "src": "android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ],
   "start_url": "https://ismailkrk123.github.io/focuslab/",
   "theme_color": "#0b0c0e",
   "id": "/focuslab/",
-  "description": "Bu uygulama YKS öğrencilerinin sınav süreçlerinde daha düzenli çalışmalarını sağlamak amacıyla oluşturulmuş yapay zeka destekli ayrıca sanal kütüphane ve pomodoro özelliklerinin de bulunduğu bir to do list &amp; task uygulamasıdır.",
+  "description": "Bu uygulama YKS ogrencilerinin sinav sureclerinde daha duzenli calismalarini saglamak amaciyla olusturulmus yapay zeka destekli sanal kutuphane ve pomodoro uygulamasidir.",
   "lang": "tr",
   "categories": [
     "education"
